@@ -118,6 +118,18 @@ describe('runtime', () => {
         const result = await runtime.runRequestScript(script, { ...baseRequest }, {}, {}, '.', null, process.env);
         expect(result.runtimeVariables.validation).toBeTruthy();
       });
+
+      it('should set disableSslVerification flag when req.disableSslVerification() is called', async () => {
+        const script = `
+          req.disableSslVerification();
+        `;
+
+        const requestCopy = { ...baseRequest };
+        const runtime = new ScriptRuntime({ runtime: 'vm2' });
+        await runtime.runRequestScript(script, requestCopy, {}, {}, '.', null, process.env);
+        
+        expect(requestCopy.disableSslVerification).toBe(true);
+      });
     });
 
     describe('run-response-script', () => {

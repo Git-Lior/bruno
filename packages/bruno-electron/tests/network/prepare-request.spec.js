@@ -78,4 +78,23 @@ describe('prepare-request: prepareRequest', () => {
       expect(result.headers['content-type']).toEqual('application/json');
     });
   });
+
+  describe('SSL verification mapping', () => {
+    it('Should map disableSslVerification from item settings to request object', async () => {
+      const item = {
+        request: {
+          method: 'GET',
+          url: 'https://test-domain',
+          body: { mode: 'none' },
+          auth: { mode: 'none' }
+        },
+        settings: {
+          disableSslVerification: true
+        }
+      };
+      
+      const result = await prepareRequest(item, { pathname: '' });
+      expect(result.disableSslVerification).toBe(true);
+    });
+  });
 });

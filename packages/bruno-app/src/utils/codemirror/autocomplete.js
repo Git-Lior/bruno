@@ -29,6 +29,7 @@ const STATIC_API_HINTS = {
     'req.getName()',
     'req.disableParsingResponseJson()',
     'req.onFail(function(err) {})',
+    'req.disableSslVerification()',
   ],
   res: [
     'res',

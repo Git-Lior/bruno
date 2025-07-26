@@ -50,7 +50,7 @@ const saveCookies = (url, headers) => {
 }
 
 const shouldDisableSslVerification = (request) => {
-  const requestSslDisabled = request.settings?.disableSslVerification === true;
+  const requestSslDisabled = request.disableSslVerification === true;
   const globalSslDisabled = !preferencesUtil.shouldVerifyTls();
   
   return requestSslDisabled || globalSslDisabled;

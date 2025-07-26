@@ -451,6 +451,11 @@ const prepareRequest = async (item, collection = {}, abortController) => {
   axiosRequest.assertions = request.assertions;
   axiosRequest.oauth2Credentials = request.oauth2Credentials;
 
+  // Map SSL verification setting from item settings to request object
+  if (settings?.disableSslVerification === true) {
+    axiosRequest.disableSslVerification = true;
+  }
+
   return axiosRequest;
 };
 

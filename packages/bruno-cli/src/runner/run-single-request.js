@@ -151,7 +151,11 @@ const runSingleRequest = async function (
     const insecure = get(options, 'insecure', false);
     const noproxy = get(options, 'noproxy', false);
     const httpsAgentRequestFields = {};
-    if (insecure) {
+    
+    // Check both global insecure flag and script-set SSL verification flag
+    const shouldDisableSSL = insecure || request.disableSslVerification;
+    
+    if (shouldDisableSSL) {
       httpsAgentRequestFields['rejectUnauthorized'] = false;
     } else {
       const caCertArray = [options['cacert'], process.env.SSL_CERT_FILE, process.env.NODE_EXTRA_CA_CERTS];

@@ -126,6 +126,12 @@ const addBrunoRequestShimToContext = (vm, req) => {
   vm.setProp(reqObject, 'getExecutionMode', getExecutionMode);
   getExecutionMode.dispose();
 
+  let disableSslVerification = vm.newFunction('disableSslVerification', function () {
+    req.disableSslVerification();
+  });
+  vm.setProp(reqObject, 'disableSslVerification', disableSslVerification);
+  disableSslVerification.dispose();
+
   vm.setProp(vm.global, 'req', reqObject);
   reqObject.dispose();
 };

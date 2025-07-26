@@ -15,7 +15,7 @@ describe('index', () => {
   });
   describe('index: getCertsAndProxyConfig', () => {
     it('Should configure rejectUnauthorized to be false when disableSslVerification is true', async () => {
-      const request = { method: 'GET', url: 'https://test-domain', settings: { disableSslVerification: true } };
+      const request = { method: 'GET', url: 'https://test-domain', disableSslVerification: true };
       const { httpsAgentRequestFields } = await getCertsAndProxyConfig({
         request,
         collectionUid: null,

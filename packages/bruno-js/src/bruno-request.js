@@ -189,6 +189,10 @@ class BrunoRequest {
   getName() {
     return this.req.name;
   }
+
+  disableSslVerification() {
+    this.req.disableSslVerification = true;
+  }
 }
 
 module.exports = BrunoRequest;
